@@ -1,0 +1,5 @@
+============The-Final-Anti-Cheat==============
+==============GlobalBanList===================
+[Anti-CheatBans]
+[RuleBrakerBans]
+[Others]
