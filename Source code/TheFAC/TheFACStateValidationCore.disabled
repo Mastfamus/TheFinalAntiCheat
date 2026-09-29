@@ -1,0 +1,127 @@
+/*using System;
+using System.Linq;
+using Hazel;
+using AmongUsPCMod.AntiCheat.Handlers;
+
+namespace AmongUsPCMod.AntiCheat.Core
+{
+    // ============================================================================
+    // 🛡️ THE FAC STATE VALIDATION CORE: STATE-BASED NETWORK SHIELD (v2.0.0)
+    // ============================================================================
+    internal static class FACStateValidationCore
+    {
+        internal static bool IsShieldActive =>
+            PlayerControl.LocalPlayer != null &&
+            PlayerControl.LocalPlayer.Data != null &&
+            !PlayerControl.LocalPlayer.Data.IsIncomplete;
+
+        /// <summary>
+        /// 🔄 ЖИВ СКЕНЕР (Update): Извиква се във Вашия главен Update() метод за сканиране на лобито
+        /// </summary>
+        internal static void RunActiveLobbyRadar()
+        {
+            if (!AmongUsClient.Instance || !AmongUsClient.Instance.AmHost || !GameState.IsInGame) return;
+
+            try
+            {
+                var currentPlayers = PlayerControl.AllPlayerControls.ToArray();
+                foreach (var player in currentPlayers)
+                {
+                    if (player == null || player.Data == null || player.AmOwner) continue;
+
+                    string fCode = (player.Data.FriendCode ?? string.Empty).Trim().ToLowerInvariant();
+                    string puid = player.OwnerId.ToString();
+
+                    // Проверяваме дали играчът вече е в черния списък на Master BanPlayers.txt файла Ви
+                    if (ExpertManagerPlugin.bannedPuidsAndCodes.Contains(fCode) || 
+                        ExpertManagerPlugin.bannedPuidsAndCodes.Contains(puid))
+                    {
+                        System.Console.WriteLine($"[THE FAC RADAR]: Instantly dropping blacklist match: {player.Data.PlayerName}");
+                        AmongUsClient.Instance.KickPlayer(player.PlayerId, true);
+                    }
+                }
+            }
+            catch { }
+        }
+
+        /// <summary>
+        /// 🛑 ЦЕНТРАЛЕН ВАЛИДАТОР ЗА ИНВАЛИДНИ RPC ПАКЕТИ (Интегрира се в RpcInterceptor Patch)
+        /// </summary>
+        /// <returns>True = Легален пакет; False = Опасна модификация (Анулирай пакета)</returns>
+        internal static bool ValidateIncomingRpcState(PlayerControl player, byte callId, MessageReader oldReader)
+        {
+            try
+            {
+                if (player == null || player.Data == null || !IsShieldActive) return true;
+                if (!ExpertManagerPlugin.EnableStrictRpcValidation) return true;
+                if (player.AmOwner && AmongUsClient.Instance.AmHost) return true;
+
+                string pName = player.Data.PlayerName ?? "Unknown";
+
+                // 1. Проверка дали RPC-то изобщо съществува в легалните списъци на играта
+                if (!IsRpcIdTrusted(callId) && !player.IsHost)
+                {
+                    FACDataManager.FastNukeExploiter(player, $"Unregistered RPC ID {callId}");
+                    return false;
+                }
+
+                if (player.IsHost) return true; // Хостът има пълни права, филтрираме само клиентите
+
+                // 2. ЗАЩИТА А: КЛИЕНТИ, ПРАЩАЩИ АДМИНИСТРАТИВНИ ХОСТ RPC-ТА
+                if (callId is (byte)RpcCalls.SetTasks or (byte)RpcCalls.ExtendLobbyTimer or (byte)RpcCalls.CloseMeeting)
+                {
+                    FACDataManager.FastNukeExploiter(player, $"Illegal Host Privilege Injection ({Enum.GetName(typeof(RpcCalls), callId)})");
+                    return false;
+                }
+
+                // 3. ЗАЩИТА Б: ПРОМЯНА НА КЛИЕНТСКИ ДАННИ И КОЗМЕТИКА ПО ВРЕМЕ НА ЖИВА ИГРА (GamePlay)
+                if (GameState.IsInGamePlay)
+                {
+                    if (callId is (byte)RpcCalls.SetColor or (byte)RpcCalls.SetHatStr or (byte)RpcCalls.SetSkinStr or 
+                                 (byte)RpcCalls.SetVisorStr or (byte)RpcCalls.SetPetStr or (byte)RpcCalls.SetNamePlateStr)
+                    {
+                        FACDataManager.FastNukeExploiter(player, $"Mid-game Outfit Exploit ({Enum.GetName(typeof(RpcCalls), callId)})");
+                        return false;
+                    }
+                }
+
+                // 4. ЗАЩИТА В: ИЗПЪЛНЕНИЕ НА ГЕЙМПЛЕЙ ДЕЙСТВИЯ, ДОКАТО СТЕ ОЩЕ В ЛОБИТО (Lobby)
+                if (GameState.IsLobby)
+                {
+                    if (callId is (byte)RpcCalls.StartMeeting or (byte)RpcCalls.ReportDeadBody or (byte)RpcCalls.SendChatNote or 
+                                 (byte)RpcCalls.CloseMeeting or (byte)RpcCalls.Exiled or (byte)RpcCalls.CastVote or 
+                                 (byte)RpcCalls.ClearVote or (byte)RpcCalls.SetRole or (byte)RpcCalls.ClimbLadder or 
+                                 (byte)RpcCalls.UsePlatform or (byte)RpcCalls.UseZipline or (byte)RpcCalls.CompleteTask or 
+                                 (byte)RpcCalls.BootFromVent or (byte)RpcCalls.EnterVent or (byte)RpcCalls.ExitVent or 
+                                 (byte)RpcCalls.CloseDoorsOfType or (byte)RpcCalls.CheckMurder or (byte)RpcCalls.MurderPlayer or 
+                                 (byte)RpcCalls.CheckShapeshift or (byte)RpcCalls.Shapeshift or (byte)RpcCalls.RejectShapeshift)
+                    {
+                        FACDataManager.FastNukeExploiter(player, $"Pre-game State Action Exploit ({Enum.GetName(typeof(RpcCalls), callId)})");
+                        return false;
+                    }
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                System.Console.WriteLine("[THE FAC STATE ERROR]: Exception bypassed in validation tree: " + ex.Message);
+                return true;
+            }
+        }
+
+        private static bool IsRpcIdTrusted(int rpcId)
+        {
+            foreach (RpcCalls rpc in Enum.GetValues(typeof(RpcCalls)))
+            {
+                if ((byte)rpc == rpcId) return true;
+            }
+            foreach (CustomRPC rpc in Enum.GetValues(typeof(CustomRPC)))
+            {
+                if ((byte)rpc == rpcId) return true;
+            }
+            return false;
+        }
+    }
+}
+*/

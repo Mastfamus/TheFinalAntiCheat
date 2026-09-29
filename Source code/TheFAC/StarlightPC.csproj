@@ -1,0 +1,50 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <AssemblyName>The Final Anti-Cheat Mastfamus PC Edition</AssemblyName>
+    <Product>The Final Anti-Cheat Mastfamus PC Edition</Product>
+    <Version>15.0.0</Version>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <LangVersion>latest</LangVersion>
+    <ResolveNuGetPackages>false</ResolveNuGetPackages>
+    <RestoreProjectStyle>Unknown</RestoreProjectStyle>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="BepInEx.Core"><HintPath>Libs/BepInEx.Core.dll</HintPath></Reference>
+    <Reference Include="0Harmony"><HintPath>Libs/0Harmony.dll</HintPath></Reference>
+    <Reference Include="UnityEngine.CoreModule"><HintPath>Libs/UnityEngine.CoreModule.dll</HintPath></Reference>
+    <Reference Include="UnityEngine.IMGUIModule"><HintPath>Libs/UnityEngine.IMGUIModule.dll</HintPath></Reference>
+    <Reference Include="Assembly-CSharp"><HintPath>Libs/Assembly-CSharp.dll</HintPath></Reference>
+    <Reference Include="Il2CppInterop.Runtime"><HintPath>Libs/Il2CppInterop.Runtime.dll</HintPath></Reference>
+    <Reference Include="Hazel"><HintPath>Libs/Hazel.dll</HintPath></Reference>
+    <Reference Include="BepInEx.Unity.IL2CPP"><HintPath>Libs/BepInEx.Unity.IL2CPP.dll</HintPath></Reference>
+    <!-- ЕТО ГО КЛЮЧОВИЯТ ЛИПСВАЩ РЕД, КОЙТО ОТКЛЮЧВА SYSTEM OBJECT НА КОМПЮТЪРА: -->
+    <Reference Include="Il2Cppmscorlib"><HintPath>Libs/Il2Cppmscorlib.dll</HintPath></Reference>
+    <Reference Include="UnityEngine.AudioModule"><HintPath>Libs\UnityEngine.AudioModule.dll</HintPath></Reference>
+    <Reference Include="UnityEngine.UIModule"><HintPath>Libs\UnityEngine.UIModule.dll</HintPath></Reference>
+    <Reference Include="UnityEngine.TextRenderingModule"><HintPath>Libs\UnityEngine.TextRenderingModule.dll</HintPath></Reference>
+    <Reference Include="Unity.TextMeshPro"><HintPath>Libs\Unity.TextMeshPro.dll</HintPath></Reference>
+    <Reference Include="UnityEngine.UI"><HintPath>Libs\UnityEngine.UI.dll</HintPath></Reference>
+    <Reference Include="UnityEngine.InputLegacyModule"><HintPath>Libs\UnityEngine.InputLegacyModule.dll</HintPath></Reference>
+    <Reference Include="UnityEngine.ImageConversionModule"><HintPath>Libs\UnityEngine.ImageConversionModule.dll</HintPath></Reference>
+    <Reference Include="Il2CppInterop.Runtime"><HintPath>Libs\Il2CppInterop.Runtime.dll</HintPath></Reference>
+    <Reference Include="UnityEngine.UnityWebRequestModule"><HintPath>Libs\UnityEngine.UnityWebRequestModule.dll</HintPath></Reference>
+    <Reference Include="UnityEngine.UnityWebRequestTextureModule"><HintPath>Libs\UnityEngine.UnityWebRequestTextureModule.dll</HintPath></Reference>
+    <Reference Include="UnityEngine.UnityWebRequestAudioModule"><HintPath>Libs\UnityEngine.UnityWebRequestAudioModule.dll</HintPath></Reference>
+    <Reference Include="NAudio.Asio"><HintPath>Libs\NAudio.Asio.dll</HintPath></Reference>
+    <Reference Include="NAudio.Core"><HintPath>Libs\NAudio.Core.dll</HintPath></Reference>
+    <Reference Include="NAudio"><HintPath>Libs\NAudio.dll</HintPath></Reference>
+    <Reference Include="NAudio.Flac"><HintPath>Libs\NAudio.Flac.dll</HintPath></Reference>
+    <Reference Include="NAudio.Wasapi"><HintPath>Libs\NAudio.Wasapi.dll</HintPath></Reference>
+    <Reference Include="NAudio.WinMM"><HintPath>Libs\NAudio.WinMM.dll</HintPath></Reference>
+    <Reference Include="YamlDotNet"><HintPath>Libs\YamlDotNet.dll</HintPath></Reference>
+    <Reference Include="YamlDotNet"><HintPath>Libs\YamlDotNet.xml</HintPath></Reference>
+    <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule"><HintPath>Libs\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath></Reference>
+    <Reference Include="UnityEngine.Physics2DModule"><HintPath>Libs\UnityEngine.Physics2DModule.dll</HintPath></Reference>
+    <Reference Include="System.Runtime"><HintPath>Libs\System.Runtime.dll</HintPath></Reference>
+    <Reference Include="System.Web.HttpUtility"><HintPath>Libs\System.Web.HttpUtility.dll</HintPath></Reference>
+  </ItemGroup>
+
+</Project>
