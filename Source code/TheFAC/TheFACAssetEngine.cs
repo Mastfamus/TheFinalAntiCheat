@@ -1,5 +1,3 @@
-using BepInEx;
-using BepInEx.Configuration;
 using HarmonyLib;
 using InnerNet;
 using UnityEngine;
