@@ -11,9 +11,23 @@ using System.IO;
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
-namespace AmongUsPCMod
+namespace AmongUsPCMod 
 {
+public static class ModStamp
+{
+    public static void Initialize()
+    {
+        SceneManager.add_sceneLoaded((Action<Scene, LoadSceneMode>)((scene, _) =>
+        {
+            if (scene.name == "MainMenu")
+            {
+                ModManager.Instance.ShowModStamp();
+            }
+        }));
+    }
+}
     [HarmonyPatch]
     public static class TheFACAssetEngine
     {
