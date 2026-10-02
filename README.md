@@ -11,7 +11,7 @@ What does it do? it checks words send in the chat and if that word is present in
 >This mod is not affiliated with Among Us or Innersloth LLC, and the content contained therein is not endorsed or otherwise sponsored by Innersloth LLC. Portions of the materials contained herein are property of Innersloth LLC. © Innersloth LLC.
 >
 >Contributing:
->The mod has been only developed by me( Mastfamus) so far, but help would be appreciated because of the size of this project it's becoming almost impossible to maintain alone. For now the main platforms are the PC oses(MacOs and Windows (not sure about Linux) in the future I want to make the mod compatible with starlight.
+>The mod has been only developed by me( Mastfamus) so far, but help would be appreciated because of the size of this project it's becoming almost impossible to maintain alone. For now the main supported platforms are the PC oses(MacOs and Windows (not sure about Linux) in the future I want to make the mod compatible with starlight.
 >There is a global ban list (EAC.txt file) in which you can add player's that have
 >cheated,
 > are acting inappropriately/have inappropriate names
