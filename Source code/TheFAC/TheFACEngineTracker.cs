@@ -8,7 +8,7 @@ using UnityEngine.UI;
 namespace AmongUsPCMod
 {
     // ============================================================================
-    // 📊 THE FAC ENGINE TRACKER: HIGH-FPS BOOST & GEOMETRIC CANVAS MATRIX (v17.5.5)
+    // THE FAC ENGINE TRACKER 
     // ============================================================================
     [HarmonyPatch]
     public static class TheFACEngineTracker
@@ -33,7 +33,7 @@ namespace AmongUsPCMod
                 int monitorHz = (int)Math.Round(Screen.currentResolution.refreshRateRatio.value);
                 Application.targetFrameRate = monitorHz > 60 ? monitorHz : 165;
 
-                // 📊 Диагностичен панел (Горе вдясно)
+            
                 trackerObj = new GameObject("TheFAC_PerformanceTracker");
                 trackerObj.transform.SetParent(__instance.transform, false);
                 
@@ -50,7 +50,7 @@ namespace AmongUsPCMod
                 trackerObj.AddComponent<FACUpdateBridge>();
 
                 // ============================================================================
-                // 💜 АДАПТИВНА UI ЗАСТРАХОВКА ЗА "THANKS" ЕТИКЕТА (by Mastfamus Еволюция)
+                // 
                 // ============================================================================
                 if (__instance.Chat != null && __instance.Chat.gameObject != null)
                 {
